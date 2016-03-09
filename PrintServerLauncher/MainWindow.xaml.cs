@@ -34,6 +34,11 @@ namespace PrintServerLauncher
                     this.WindowState = WindowState.Normal;
                 };
             this.Hide();
+
+            PrintServer server = new PrintServer();
+            AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) => server.Stop();
+
+            server.Run();
         }
 
         protected override void OnStateChanged(EventArgs e)
