@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="Print Server Launcher" Height="350" Width="525" WindowState="Minimized">
     <Grid>
-        
+        <StackPanel>
+            <Label FontSize="32" Content="Print Server Launcher" d:LayoutOverrides="LeftPosition, RightPosition"/>
+            <TextBox Background="AliceBlue" Height="230" DataContext="asdasd" Text="[]123123123&#xD;&#xA;131&#xD;&#xA;123123123123&#xD;&#xA;1231231231421234&#xD;&#xA;"/>
+            <Label Content="Server is running."/>
+        </StackPanel>
     </Grid>
 </Window>
