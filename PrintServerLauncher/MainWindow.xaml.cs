@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,6 @@ namespace PrintServerLauncher
 
             PrintServer server = new PrintServer();
             AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) => server.Stop();
-
             server.Run();
         }
 
