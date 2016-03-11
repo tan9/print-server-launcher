@@ -13,6 +13,12 @@ namespace PrintServerLauncher
         {
             ThreadStart threadStart = new ThreadStart(() =>
             {
+                while (!File.Exists(fileName) && !stopped)
+                {
+                    // wait until log file is available
+                    Thread.Sleep(10);
+                }
+
                 // code snippet taken from http://www.codeproject.com/Articles/7568/Tail-NET
                 using (StreamReader reader = new StreamReader(new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)))
                 {
@@ -21,7 +27,7 @@ namespace PrintServerLauncher
 
                     while (!stopped)
                     {
-                        System.Threading.Thread.Sleep(100);
+                        Thread.Sleep(100);
 
                         // if the file size has not changed, idle
                         if (reader.BaseStream.Length == lastMaxOffset)

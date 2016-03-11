@@ -11,19 +11,25 @@ namespace PrintServerLauncher
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            MainForm mainForm = new MainForm();
+            try {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                MainForm mainForm = new MainForm();
 
-            PrintServer server = new PrintServer();
-            AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) => server.Stop();
-            server.Run();
+                PrintServer server = new PrintServer();
+                AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) => server.Stop();
 
-            LogTailer logTailer = new LogTailer();
-            logTailer.TailLog("D:/development/repositories/print-server/print-server.log", mainForm);
-            mainForm.Disposed += (sender, eventArgs) => logTailer.Stop();
+                LogTailer logTailer = new LogTailer();
+                logTailer.TailLog(server.GetLogFileName(), mainForm);
+                mainForm.Disposed += (sender, eventArgs) => logTailer.Stop();
 
-            Application.Run(mainForm);
+                server.Run();
+                Application.Run(mainForm);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }
