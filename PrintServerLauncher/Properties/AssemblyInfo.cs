@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PrintServerLauncher")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Print Server Launcher")]
+[assembly: AssemblyDescription("print-server system tray launcher and monitor.\r\n\r\nIcon by ipapun // CC BY")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PrintServerLauncher")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("Chhunghwa Telecom Co., Ltd.")]
+[assembly: AssemblyProduct("Print Server Launcher")]
+[assembly: AssemblyCopyright("Copyright © 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

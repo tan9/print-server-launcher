@@ -82,5 +82,10 @@ namespace PrintServerLauncher
         {
 
         }
+
+        private void title_Click(object sender, EventArgs e)
+        {
+            new AboutBox().Show();
+        }
     }
 }
