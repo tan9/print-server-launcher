@@ -30,52 +30,44 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.status = new System.Windows.Forms.Label();
             this.logBox = new System.Windows.Forms.TextBox();
             this.title = new System.Windows.Forms.Label();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.logAppendWorker = new System.ComponentModel.BackgroundWorker();
-            this.panel1.SuspendLayout();
+            this.mainPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.status);
-            this.panel1.Controls.Add(this.logBox);
-            this.panel1.Controls.Add(this.title);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(535, 324);
-            this.panel1.TabIndex = 0;
             // 
             // status
             // 
             this.status.AutoSize = true;
-            this.status.Location = new System.Drawing.Point(425, 302);
+            this.status.Dock = System.Windows.Forms.DockStyle.Right;
+            this.status.Location = new System.Drawing.Point(405, 276);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(98, 13);
+            this.status.Size = new System.Drawing.Size(98, 20);
             this.status.TabIndex = 2;
             this.status.Text = "Print server running";
             // 
             // logBox
             // 
-            this.logBox.Location = new System.Drawing.Point(12, 60);
+            this.logBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logBox.Location = new System.Drawing.Point(3, 43);
             this.logBox.Multiline = true;
             this.logBox.Name = "logBox";
             this.logBox.ReadOnly = true;
             this.logBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.logBox.Size = new System.Drawing.Size(511, 239);
+            this.logBox.Size = new System.Drawing.Size(500, 230);
             this.logBox.TabIndex = 1;
+            this.logBox.WordWrap = false;
             // 
             // title
             // 
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.title.Location = new System.Drawing.Point(13, 13);
+            this.title.Location = new System.Drawing.Point(3, 0);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(389, 44);
+            this.title.Size = new System.Drawing.Size(389, 40);
             this.title.TabIndex = 0;
             this.title.Text = "Print Server Launcher";
             // 
@@ -90,20 +82,38 @@
             // 
             this.logAppendWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.logAppendWorker_RunWorkerCompleted);
             // 
+            // mainPanel
+            // 
+            this.mainPanel.ColumnCount = 1;
+            this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mainPanel.Controls.Add(this.status, 0, 2);
+            this.mainPanel.Controls.Add(this.title, 0, 0);
+            this.mainPanel.Controls.Add(this.logBox, 0, 1);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.RowCount = 3;
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.mainPanel.Size = new System.Drawing.Size(506, 296);
+            this.mainPanel.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(535, 324);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(506, 296);
+            this.Controls.Add(this.mainPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(320, 200);
             this.Name = "MainForm";
             this.ShowInTaskbar = false;
             this.Text = "Print Server Launcher";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Resize += new System.EventHandler(this.mainForm_Resize);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.mainPanel.ResumeLayout(false);
+            this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -111,10 +121,10 @@
         #endregion
 
         private System.Windows.Forms.Label title;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox logBox;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.ComponentModel.BackgroundWorker logAppendWorker;
+        private System.Windows.Forms.TableLayoutPanel mainPanel;
     }
 }
