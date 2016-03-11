@@ -36,7 +36,13 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.logAppendWorker = new System.ComponentModel.BackgroundWorker();
             this.mainPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.contextMenuStripNotifyIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemOpenWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel.SuspendLayout();
+            this.contextMenuStripNotifyIcon.SuspendLayout();
             this.SuspendLayout();
             // 
             // status
@@ -81,6 +87,7 @@
             this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon.BalloonTipText = "Launcher is running.";
             this.notifyIcon.BalloonTipTitle = "Print Server Launcher";
+            this.notifyIcon.ContextMenuStrip = this.contextMenuStripNotifyIcon;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "Print Server Launcher";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
@@ -105,7 +112,42 @@
             this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.mainPanel.Size = new System.Drawing.Size(506, 296);
             this.mainPanel.TabIndex = 1;
-            this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
+            // 
+            // contextMenuStripNotifyIcon
+            // 
+            this.contextMenuStripNotifyIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemOpenWindow,
+            this.toolStripMenuItemAbout,
+            this.toolStripSeparator,
+            this.toolStripMenuItemExit});
+            this.contextMenuStripNotifyIcon.Name = "contextMenuStripNotifyIcon";
+            this.contextMenuStripNotifyIcon.Size = new System.Drawing.Size(153, 98);
+            // 
+            // toolStripMenuItemOpenWindow
+            // 
+            this.toolStripMenuItemOpenWindow.Name = "toolStripMenuItemOpenWindow";
+            this.toolStripMenuItemOpenWindow.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemOpenWindow.Text = "Open Window";
+            this.toolStripMenuItemOpenWindow.Click += new System.EventHandler(this.toolStripMenuItemOpenWindow_Click);
+            // 
+            // toolStripMenuItemAbout
+            // 
+            this.toolStripMenuItemAbout.Name = "toolStripMenuItemAbout";
+            this.toolStripMenuItemAbout.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemAbout.Text = "About...";
+            this.toolStripMenuItemAbout.Click += new System.EventHandler(this.toolStripMenuItemAbout_Click);
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
+            // 
+            // toolStripMenuItemExit
+            // 
+            this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
+            this.toolStripMenuItemExit.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemExit.Text = "Exit";
+            this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
             // MainForm
             // 
@@ -122,6 +164,7 @@
             this.Resize += new System.EventHandler(this.mainForm_Resize);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
+            this.contextMenuStripNotifyIcon.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -134,5 +177,10 @@
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.ComponentModel.BackgroundWorker logAppendWorker;
         private System.Windows.Forms.TableLayoutPanel mainPanel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripNotifyIcon;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenWindow;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAbout;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
     }
 }

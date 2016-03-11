@@ -52,6 +52,18 @@ namespace PrintServerLauncher
             }
         }
 
+        private void HideNotifyIconAndShowMainForm()
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
+        }
+
+        private void ShowAboutBox()
+        {
+            new AboutBox().Show();
+        }
+
         private void mainForm_Resize(object sender, EventArgs e)
         {
             if (FormWindowState.Minimized == this.WindowState)
@@ -73,19 +85,27 @@ namespace PrintServerLauncher
 
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            notifyIcon.Visible = false;
-        }
-
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
-        {
-
+            HideNotifyIconAndShowMainForm();
         }
 
         private void title_Click(object sender, EventArgs e)
         {
-            new AboutBox().Show();
+            ShowAboutBox();
+        }
+
+        private void toolStripMenuItemOpenWindow_Click(object sender, EventArgs e)
+        {
+            HideNotifyIconAndShowMainForm();
+        }
+
+        private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
+        {
+            ShowAboutBox();
+        }
+
+        private void toolStripMenuItemExit_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }
