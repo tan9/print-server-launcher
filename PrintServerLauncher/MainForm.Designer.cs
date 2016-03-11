@@ -52,12 +52,13 @@
             // logBox
             // 
             this.logBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logBox.Location = new System.Drawing.Point(3, 43);
+            this.logBox.Location = new System.Drawing.Point(5, 55);
+            this.logBox.Margin = new System.Windows.Forms.Padding(5);
             this.logBox.Multiline = true;
             this.logBox.Name = "logBox";
             this.logBox.ReadOnly = true;
             this.logBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.logBox.Size = new System.Drawing.Size(500, 230);
+            this.logBox.Size = new System.Drawing.Size(496, 216);
             this.logBox.TabIndex = 1;
             this.logBox.WordWrap = false;
             // 
@@ -65,11 +66,14 @@
             // 
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.title.Location = new System.Drawing.Point(3, 0);
+            this.title.Image = ((System.Drawing.Image)(resources.GetObject("title.Image")));
+            this.title.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.title.Location = new System.Drawing.Point(5, 5);
+            this.title.Margin = new System.Windows.Forms.Padding(5);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(389, 40);
+            this.title.Size = new System.Drawing.Size(439, 40);
             this.title.TabIndex = 0;
-            this.title.Text = "Print Server Launcher";
+            this.title.Text = "     Print Server Launcher";
             // 
             // notifyIcon
             // 
@@ -93,11 +97,12 @@
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.RowCount = 3;
-            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.mainPanel.Size = new System.Drawing.Size(506, 296);
             this.mainPanel.TabIndex = 1;
+            this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
             // MainForm
             // 

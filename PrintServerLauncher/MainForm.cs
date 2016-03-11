@@ -77,5 +77,10 @@ namespace PrintServerLauncher
             this.WindowState = FormWindowState.Normal;
             notifyIcon.Visible = false;
         }
+
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
