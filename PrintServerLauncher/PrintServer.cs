@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace PrintServerLauncher
 {
@@ -35,7 +30,7 @@ namespace PrintServerLauncher
 
         public void Stop()
         {
-            if (process != null)
+            if (process != null && !process.HasExited)
             {
                 process.Kill();
                 process = null;

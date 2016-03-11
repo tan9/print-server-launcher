@@ -32,16 +32,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.status = new System.Windows.Forms.Label();
-            this.log = new System.Windows.Forms.TextBox();
+            this.logBox = new System.Windows.Forms.TextBox();
             this.title = new System.Windows.Forms.Label();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.logAppendWorker = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.status);
-            this.panel1.Controls.Add(this.log);
+            this.panel1.Controls.Add(this.logBox);
             this.panel1.Controls.Add(this.title);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -58,15 +59,15 @@
             this.status.TabIndex = 2;
             this.status.Text = "Print server running";
             // 
-            // log
+            // logBox
             // 
-            this.log.Location = new System.Drawing.Point(12, 60);
-            this.log.Multiline = true;
-            this.log.Name = "log";
-            this.log.ReadOnly = true;
-            this.log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.log.Size = new System.Drawing.Size(511, 239);
-            this.log.TabIndex = 1;
+            this.logBox.Location = new System.Drawing.Point(12, 60);
+            this.logBox.Multiline = true;
+            this.logBox.Name = "logBox";
+            this.logBox.ReadOnly = true;
+            this.logBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.logBox.Size = new System.Drawing.Size(511, 239);
+            this.logBox.TabIndex = 1;
             // 
             // title
             // 
@@ -85,6 +86,10 @@
             this.notifyIcon.Text = "notifyIcon";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
+            // logAppendWorker
+            // 
+            this.logAppendWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.logAppendWorker_RunWorkerCompleted);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -93,6 +98,7 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
+            this.ShowInTaskbar = false;
             this.Text = "Print Server Launcher";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Resize += new System.EventHandler(this.mainForm_Resize);
@@ -106,9 +112,9 @@
 
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox log;
+        private System.Windows.Forms.TextBox logBox;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.NotifyIcon notifyIcon;
-
+        private System.ComponentModel.BackgroundWorker logAppendWorker;
     }
 }

@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -53,6 +54,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogTailer.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

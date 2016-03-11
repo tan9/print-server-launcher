@@ -1,27 +1,73 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.ComponentModel;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace PrintServerLauncher
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, ILogger
     {
+        delegate void AppendLogCallback(string log);
+        private ConcurrentQueue<String> logs = new ConcurrentQueue<String>();
+
         public MainForm()
         {
             InitializeComponent();
+            this.Hide();
+
+            new Thread(() => { this.logAppendWorker.RunWorkerAsync(); }).Start();
+        }
+
+        public void AppendLog(String text)
+        {
+            logs.Enqueue(text);
+        }
+
+        private void logAppendWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            while (!this.IsDisposed)
+            {
+                System.Threading.Thread.Sleep(100);
+
+                String log;
+                while (logs.TryDequeue(out log))
+                    AppendLogBox(log);
+            }
+        }
+
+        private void AppendLogBox(string text)
+        {
+            if (this.logBox.InvokeRequired)
+            {
+                AppendLogCallback d = new AppendLogCallback(AppendLogBox);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                if (logBox.Text.Length == 0)
+                    logBox.Text = text;
+                else
+                    logBox.AppendText("\r\n" + text);
+            }
         }
 
         private void mainForm_Resize(object sender, EventArgs e)
         {
             if (FormWindowState.Minimized == this.WindowState)
             {
+                this.Hide();
+                this.ShowInTaskbar = false;
+
                 notifyIcon.Visible = true;
                 notifyIcon.ShowBalloonTip(500);
-                this.Hide();
             }
-
-            else if (FormWindowState.Normal == this.WindowState)
+            else
             {
                 notifyIcon.Visible = false;
+
+                this.Show();
+                this.ShowInTaskbar = true;
             }
         }
 
