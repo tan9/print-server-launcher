@@ -74,12 +74,15 @@
             this.title.Size = new System.Drawing.Size(439, 40);
             this.title.TabIndex = 0;
             this.title.Text = "     Print Server Launcher";
+            this.title.Click += new System.EventHandler(this.title_Click);
             // 
             // notifyIcon
             // 
-            this.notifyIcon.BalloonTipText = "Print Server Launcher";
+            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon.BalloonTipText = "Launcher is running.";
+            this.notifyIcon.BalloonTipTitle = "Print Server Launcher";
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "notifyIcon";
+            this.notifyIcon.Text = "Print Server Launcher";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
             // logAppendWorker
