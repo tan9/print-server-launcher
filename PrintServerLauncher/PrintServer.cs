@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading;
 
 namespace PrintServerLauncher
@@ -16,15 +17,28 @@ namespace PrintServerLauncher
                 start.WindowStyle = ProcessWindowStyle.Hidden;
                 start.CreateNoWindow = true;
 
-                process = new Process();
-                process.StartInfo = start;
+                Process[] processesExisted = Process.GetProcessesByName("print-server");
 
-                ThreadStart threadStart = new ThreadStart(() =>
+                if (processesExisted.Length == 0)
                 {
-                    bool exitCode = process.Start();
-                });
-                Thread thread = new Thread(threadStart);
-                thread.Start();
+                    process = new Process();
+                    process.StartInfo = start;
+
+                    ThreadStart threadStart = new ThreadStart(() =>
+                    {
+                        bool exitCode = process.Start();
+                    });
+                    Thread thread = new Thread(threadStart);
+                    thread.Start();
+                }
+                else if (processesExisted.Length == 1)
+                {
+                    process = processesExisted[0];
+                }
+                else
+                {
+                    throw new InvalidOperationException("Found more than one existing printer-server processes.");
+                }
             }
         }
 
