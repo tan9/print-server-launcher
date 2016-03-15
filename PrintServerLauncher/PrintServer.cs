@@ -8,7 +8,7 @@ namespace PrintServerLauncher
     class PrintServer
     {
         private const String PROCESS_EXECUTABLE_NAME = "print-server.exe";
-        private const String PROCESS_LOG_FILE_NAME = "print-server.log";
+        private const String PROCESS_LOG_FILE_NAME = "logs\\print-server-<TIMESTAMP>.log";
 
         private Process process;
         private String processLocation;
@@ -72,7 +72,10 @@ namespace PrintServerLauncher
 
         public String GetLogFileName()
         {
-            return processLocation + "\\" + PROCESS_LOG_FILE_NAME;
+            DateTime dateTime = DateTime.Now;
+            String timestamp = dateTime.ToString("yyyy-MM-dd");
+            String logFilePattern = PROCESS_LOG_FILE_NAME.Replace("<TIMESTAMP>", timestamp);
+            return processLocation + "\\" + logFilePattern;
         }
     }
 }
